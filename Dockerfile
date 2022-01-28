@@ -1,7 +1,7 @@
 FROM node:16-alpine as builder
 
 # build wombat
-RUN apk add git
+RUN apk add git g++ make py3-pip
 COPY . /opt/womginx
 
 WORKDIR /opt/womginx
@@ -34,6 +34,7 @@ ENV PORT=80
 
 COPY --from=builder /opt/womginx /opt/womginx
 RUN cp /opt/womginx/nginx.conf /etc/nginx/nginx.conf
+RUN cp /opt/womginx/.htpasswd /etc/nginx/.htpasswd
 
 # make sure nginx.conf works (mainly used for development)
 RUN nginx -t
