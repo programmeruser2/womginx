@@ -7,5 +7,5 @@ services:
       - PORT=80
       - SAFE_BROWSING=1
     ports:
-      - 80:80
+      - 2315:80
     restart: unless-stopped
